@@ -82,3 +82,15 @@ print(f"Extracted Signal Shape: {voltage_data.shape}")
 * With 5-Way TTA: ~18.2 dB
 
 * With Physics Refinement: >18.4 dB (State-of-the-Art Performance)
+
+## ⚠️ Dataset Specifics & Generalizability
+While the core architecture (U-Net + ResNet34) and Physics-Informed Post-Processing are dataset-agnostic, the current configuration parameters are optimized for the **PhysioNet Digitization Challenge** dataset.
+
+**Specific constraints include:**
+* **Image Resolution:** The pipeline expects inputs resized to `1696x4352`.
+* **Cropping Logic:** The inference engine currently crops the first `2176` columns to focus on the signal area specific to this dataset's layout.
+* **Zero Levels:** The `ZERO_LEVELS` in `src/config.py` correspond to the specific grid layout of the challenge forms.
+
+**To adapt to new datasets:**
+1. Update `IMAGE_SIZE` and `ZERO_LEVELS` in `src/config.py`.
+2. Modify the preprocessing logic in `src/inference.py` to handle different page layouts or orientations.

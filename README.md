@@ -55,8 +55,7 @@ git clone [https://github.com/yourusername/ECG-Digitization.git](https://github.
 cd ECG-Digitization
 
 # Install dependencies
-pip install torch torchvision timm opencv-python scipy numpy
-
+pip install -r requirements.txt
 ```
 ### Running Inference
 Place your model weights in the weights/ directory and run the inference engine:
